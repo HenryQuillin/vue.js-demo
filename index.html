@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" -->
+    <!-- integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <div class="demos">
+        <h2>Fade in/out</h2>
+
+        <div id="demo">
+            <button class="btn btn-primary" @click="show = !show">
+                Toggle
+            </button>
+            <br>
+            <transition name="fade">
+                <img class="img" v-if="show" src="img.png" alt="">
+            </transition>
+        </div>
+        <hr>
+
+        <h2>Slide in/out</h2>
+
+        <div id="demo2">
+            <button class="btn btn-primary" @click="show = !show">
+                Toggle
+            </button>
+            <transition name="slide-fade">
+                <p v-if="show">I will slide in and out</p>
+            </transition>
+        </div>
+        <hr>
+
+
+
+        <h2>Transitions with Style Bindings</h2>
+        <div id="demo3">
+            <div @mousemove="xCoordinate" :style="{ backgroundColor: `hsl(${x}, 80%, 50%)` }" class="movearea">
+                <p>x: {{x}}</p>
+            </div>
+        </div>
+        <hr>
+
+
+        <h2>Using CSS Animations</h2>
+
+        <div id="demo4">
+            <button class="btn btn-primary" @click="show = !show">Toggle show</button>
+
+            <transition name="bounce">
+                <p v-if="show">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at
+                    lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+            </transition>
+        </div>
+        <hr>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js"></script>
+
+        <h2>Using JavaScript Animations</h2>
+        <div id="demo5">
+            <button class="btn btn-primary" @click="show = !show">
+                Toggle
+            </button>
+
+            <transition @before-enter="beforeEnter" @enter="enter" @leave="leave" :css="false">
+                <p v-if="show">
+                    ProjectNEWM!
+                </p>
+            </transition>
+        </div>
+        <hr>
+
+
+        <h2>Vue Transition modes </h2>
+        <div id="demo6">
+            <transition name="mode-fade" mode="out-in">
+              <button class="btn btn-secondary" v-if="on" key="on" @click="on = false">
+                on
+              </button>
+              <button class="btn btn-secondary" v-else key="off" @click="on = true">
+                off
+              </button>
+            </transition>
+          </div>
+
+
+    </div>
+
+
+
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <script src="src.js"></script>
+</body>
+
+</html>
