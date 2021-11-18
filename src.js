@@ -111,4 +111,91 @@ const Demo6 = {
 
 Vue.createApp(Demo6).mount('#demo6')
 
+// --------Demo 7--------------------
 
+const Demo7 = {
+  data() {
+    return {
+      items: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    };
+  },
+  methods: {
+    shuffle() {
+      this.items = _.shuffle(this.items);
+    }
+  }
+};
+
+Vue.createApp(Demo7).mount("#flip-list-demo");
+
+// --------Demo 8--------------------
+
+const Demo8 = {
+  data() {
+    return {
+      query: '',
+      list: [
+        { msg: 'Bruce Lee' },
+        { msg: 'Jackie Chan' },
+        { msg: 'Chuck Norris' },
+        { msg: 'Jet Li' },
+        { msg: 'Kung Fury' }
+      ]
+    }
+  },
+  computed: {
+    computedList() {
+      var vm = this
+      return this.list.filter((item) => {
+        return item.msg.toLowerCase().indexOf(vm.query.toLowerCase()) !== -1
+      })
+    }
+  },
+  methods: {
+    beforeEnter(el) {
+      el.style.opacity = 0
+      el.style.height = 0
+    },
+    enter(el, done) {
+      gsap.to(el, { 
+        opacity: 1, 
+        height: '1.6em',
+        delay: el.dataset.index * .15,
+        onComplete: done
+      })
+    },
+    leave(el, done) {
+      gsap.to(el, { 
+        opacity: 0, 
+        height: 0,
+        delay: el.dataset.index * .15,
+        onComplete: done
+      })
+    }
+  }
+}
+
+Vue.createApp(Demo8).mount('#demo8')
+
+// --------Demo 9-------------------
+
+const Demo9 = {
+  data() {
+    return {
+      number: 0,
+      tweenedNumber: 0
+    }
+  },
+  computed: {
+    animatedNumber() {
+      return this.tweenedNumber.toFixed(0)
+    }
+  },
+  watch: {
+    number(newValue) {
+      gsap.to(this.$data, { duration: 0.5, tweenedNumber: newValue })
+    }
+  }
+}
+
+Vue.createApp(Demo9).mount('#animated-number-demo')
