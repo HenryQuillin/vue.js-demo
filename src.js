@@ -199,3 +199,5 @@ const Demo9 = {
 }
 
 Vue.createApp(Demo9).mount('#animated-number-demo')
+
+
